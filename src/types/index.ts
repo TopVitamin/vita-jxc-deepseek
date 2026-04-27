@@ -158,7 +158,7 @@ export interface PurchaseInbound {
   inboundDate: string
   quantity: number
   totalAmount: number
-  docStatus: DocStatus
+  docStatus: InOutStatus
   createdAt: string
 }
 
@@ -170,7 +170,7 @@ export interface SupplierReturn {
   returnDate: string
   quantity: number
   totalAmount: number
-  docStatus: DocStatus
+  docStatus: InOutStatus
   createdAt: string
 }
 
@@ -212,7 +212,7 @@ export interface SalesOutbound {
   outboundDate: string
   quantity: number
   totalAmount: number
-  docStatus: DocStatus
+  docStatus: InOutStatus
   createdAt: string
 }
 
@@ -224,7 +224,7 @@ export interface CustomerReturn {
   returnDate: string
   quantity: number
   totalAmount: number
-  docStatus: DocStatus
+  docStatus: InOutStatus
   createdAt: string
 }
 
