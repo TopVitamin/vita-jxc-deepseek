@@ -63,6 +63,34 @@ function createCrudApi<T extends { id: string }>(dataSource: T[], name: string) 
         if (query?.warehouseName) {
           filtered = filtered.filter((item: any) => item.warehouseName === query.warehouseName)
         }
+        // 扩展筛选字段
+        if (query?.category) filtered = filtered.filter((item: any) => item.category === query.category)
+        if (query?.type) filtered = filtered.filter((item: any) => item.type === query.type)
+        if (query?.region) filtered = filtered.filter((item: any) => item.region === query.region)
+        if (query?.settlement) filtered = filtered.filter((item: any) => item.settlement === query.settlement)
+        if (query?.brand) filtered = filtered.filter((item: any) => item.brand === query.brand)
+        if (query?.org) filtered = filtered.filter((item: any) => item.org === query.org)
+        if (query?.role) filtered = filtered.filter((item: any) => item.role === query.role)
+        if (query?.dictCode) filtered = filtered.filter((item: any) => item.dictCode === query.dictCode)
+        if (query?.bizType) filtered = filtered.filter((item: any) => item.bizType === query.bizType)
+        if (query?.supplierName) filtered = filtered.filter((item: any) => item.supplierName === query.supplierName)
+        if (query?.customerName) filtered = filtered.filter((item: any) => item.customerName === query.customerName)
+        if (query?.dateFrom) {
+          const dateField = query.dateField || 'createdAt'
+          filtered = filtered.filter((item: any) => item[dateField] >= query.dateFrom)
+        }
+        if (query?.dateTo) {
+          const dateField = query.dateField || 'createdAt'
+          filtered = filtered.filter((item: any) => item[dateField] <= query.dateTo + 'T23:59:59Z')
+        }
+        if (query?.minPrice) filtered = filtered.filter((item: any) => {
+          const price = item.purchasePrice ?? item.salePrice ?? item.totalAmount ?? 0
+          return price >= Number(query.minPrice)
+        })
+        if (query?.maxPrice) filtered = filtered.filter((item: any) => {
+          const price = item.purchasePrice ?? item.salePrice ?? item.totalAmount ?? 0
+          return price <= Number(query.maxPrice)
+        })
         const page = query?.page || 1
         const pageSize = query?.pageSize || 10
         const start = (page - 1) * pageSize
