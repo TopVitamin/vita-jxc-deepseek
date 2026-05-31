@@ -31,5 +31,5 @@ jobs:
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER }}
           SOURCE: dist/
-          TARGET: /var/www/pmvitamin.top/projects/vita-jxc-deepseek/
+          TARGET: /var/www/pmvitamin.com/projects/vita-jxc-deepseek/
           ARGS: -avz --delete
